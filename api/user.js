@@ -17,7 +17,7 @@ module.exports.userLogin = function(req, res, next) {
             });
             // 登录成功添加cookie
             res.cookie('token', token, {
-                maxAge: 10000
+                maxAge: 1000 * 60 * 60
             });
             res.json({
                 status: '20000',
