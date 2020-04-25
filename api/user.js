@@ -1,6 +1,8 @@
 var User = require('../models/user');
 var jwt = require('../public/utils/jwt');
-
+var formidable = require('formidable'); //上传功能的插件
+var path = require('path')
+var fs = require("fs");
 module.exports.userLogin = function(req, res, next) {
     var postData = {
         userName: req.body.userName,
@@ -43,3 +45,9 @@ module.exports.userList = function(req, res, next) {
         res.send(data)
     });
 };
+module.exports.upLoadImg = function(req, res, next) {
+    var form = new formidable.IncomingForm();
+    form.uploadDir = path.join(__dirname, '../../static/'); //文件保存的临时目录为static文件夹（文件夹不存在会报错，一会接受的file中的path就是这个）
+    form.maxFieldsSize = 1 * 1024 * 1024; //用户头像大小限制为最大1M
+    form.keepExtensions = true; //使用文件的原扩展名
+}

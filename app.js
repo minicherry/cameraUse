@@ -4,11 +4,25 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var jwt = require('./public/utils/jwt');
-
+var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 
 var app = express();
+//连接MongoDB数据库
+mongoose.connect('mongodb://cyf:123456@127.0.0.1:27017/camera');
+
+mongoose.connection.on("connected", function() {
+    console.log("MongodB connected success.")
+});
+
+mongoose.connection.on("error", function() {
+    console.log("MongodB connected fail.")
+});
+
+mongoose.connection.on("disconnected", function() {
+    console.log("MongodB connected disconnected.")
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
