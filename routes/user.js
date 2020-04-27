@@ -36,4 +36,6 @@ router.get("/", function(req, res, next) {
 });
 router.post('/login', UserApi.userLogin);
 router.get('/userList', UserApi.userList);
+router.post('/upLoadImg', UserApi.upLoadImg);
+
 module.exports = router;

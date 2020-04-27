@@ -9,7 +9,7 @@ var UserSchema = new Schema({
         url: String,
         name: String,
         size: String,
-        creatData: String
+        createData: String
     }]
 });
 
